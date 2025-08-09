@@ -10,6 +10,7 @@ namespace Grail
         [SerializeField] private UIManager UIManager;
         [SerializeField] private PlayerController playerController;
         [SerializeField] private PlayerInventory playerInvertory;
+        [SerializeField] private TileGridConstructor tileGridConstructor;
 
         public static Initializator instance { get; private set; }
 
@@ -28,7 +29,8 @@ namespace Grail
 
         private void InitializeGame()
         {
-            playerController.Initialize(worldTilemap, turnsManager);
+            tileGridConstructor.Initialize();
+            playerController.Initialize();
             playerInvertory.Initialize();
             turnsManager.Initialize();
             UIManager.Initialize(); // это должно быть в конце

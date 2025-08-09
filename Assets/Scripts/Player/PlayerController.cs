@@ -7,8 +7,9 @@ namespace Grail
 {
     public class PlayerController : MonoBehaviour
     {
-        private Tilemap worldTilemap;
-        private TurnsManager turnsManager;
+        [SerializeField] private Tilemap worldTilemap;
+        [SerializeField] private TurnsManager fromTurnsManager;
+        [SerializeField] private TileDataManager fromTileDataManager;
         private Vector3Int playerCellPosition = new Vector3Int(0, 0, 0);
 
         //input sys
@@ -17,13 +18,10 @@ namespace Grail
         private float pauseTimeBetweenTurns = 0.2f;
         private bool isPaused;
 
-        public void Initialize(Tilemap tilemapReference, TurnsManager deliveredTurnsManager)
+        public void Initialize()
         {
             inputActions = new PlayerInputSystem();
             inputActions.Player.Move.performed += OnMovePerformed;
-
-            turnsManager = deliveredTurnsManager;
-            worldTilemap = tilemapReference;
         }
 
         private void OnEnable()
@@ -70,7 +68,8 @@ namespace Grail
                 Debug.Log(playerCellPosition.y);
                 Vector3 worldPosition = worldTilemap.GetCellCenterWorld(playerCellPosition);
                 transform.position = worldPosition;
-                turnsManager.AddTurns(TileCheckManager.CheckMoveCost(tile));
+                fromTurnsManager.AddTurns(TileCheckManager.CheckMoveCost(tile));
+                fromTileDataManager.CheckObjectsOnTile(playerCellPosition);
             }
         }
 
