@@ -3,17 +3,19 @@ using UnityEngine;
 
 namespace Grail
 {
-    public class PlayerInventory : MonoBehaviour
+    public class PlayerInventory : MonoBehaviour, IInitializable
     {
         public int currentGold { get; private set; }
         public int currentCrystals { get; private set; }
 
-        public event Action onCurrentGoldChanged;
-        public event Action onCurrentCrystalChanged;
+        public event Action OnCurrentGoldChanged;
+        public event Action OnCurrentCrystalChanged;
 
         public static PlayerInventory instance { get; private set; }
 
-        public void Initialize()
+        public int sortingIndex => 3;
+
+        public void Initialise()
         {
             if (instance != null && instance != this)
             {
@@ -31,25 +33,25 @@ namespace Grail
         public void GetGold(int goldAmount)
         {
             instance.currentGold += goldAmount;
-            onCurrentGoldChanged?.Invoke();
+            OnCurrentGoldChanged?.Invoke();
         }
 
         public void GetCrystals(int crystalsAmount)
         {
             instance.currentCrystals += crystalsAmount;
-            onCurrentCrystalChanged?.Invoke();
+            OnCurrentCrystalChanged?.Invoke();
         }
 
         public void TakeGold(int amountOfGold)
         {
             instance.currentGold -= amountOfGold;
-            onCurrentGoldChanged?.Invoke();
+            OnCurrentGoldChanged?.Invoke();
         }
 
         public void TakeCrystals(int amountOfCrystals)
         {
             instance.currentCrystals -= amountOfCrystals;
-            onCurrentCrystalChanged?.Invoke();
+            OnCurrentCrystalChanged?.Invoke();
         }
 
         public int GetCurrentGold() => instance.currentGold;

@@ -3,39 +3,37 @@ using UnityEngine;
 
 namespace Grail
 {
-    public class TurnsManager : MonoBehaviour
+    public class TurnsManager : MonoBehaviour, IInitializable
     {
+        [SerializeField] private int maxTurns = 100;
+
+        public int sortingIndex => 4;
         private int currentTurns;
-        private int maxTurns = 10;
 
-        public event Action onTurnsChanged;
-        public event Action onGameOver;
+        public event Action OnTurnsChanged;
+        public event Action OnGameOver;
 
-        public void Initialize()
+        public void Initialise()
         {
             currentTurns = 0;
-            maxTurns = 10;
+            //maxTurns = 100;
         }
 
         public void AddTurns(int addedTurns)
         {
+            if (addedTurns < 0)
+            {
+                Debug.LogError("Negative number in TurnsManager.AddTurns");
+            }
             currentTurns += addedTurns;
-            onTurnsChanged?.Invoke();
-            if (GameOverCheck())
+            OnTurnsChanged?.Invoke();
+            if (IsGameOver())
             {
-                onGameOver?.Invoke();
+                OnGameOver?.Invoke();
             }
         }
 
-        private bool GameOverCheck()
-        {
-            if(currentTurns >= maxTurns)
-            {
-                return true;
-            }
-            return false;
-        }
-
+        private bool IsGameOver() => currentTurns >= maxTurns;
         public int GetCurrentTurns() => currentTurns;
         public int GetMaxTurns() => maxTurns;
     }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d7f8496fff6baf94684e1bfa747092c9
+guid: e5431a89053ed8147b3efad9c70cdc87
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8114127751195108233
-    second: swamp_0
+      213: -8010440586615673751
+    second: SandTile_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: swamp_0
+      name: SandTile_0
       rect:
         serializedVersion: 2
         x: 0
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 77c50effcc3d46f80800000000000000
-      internalID: -8114127751195108233
+      spriteID: 96ca6644ab235d090800000000000000
+      internalID: -8010440586615673751
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      swamp_0: -8114127751195108233
+      SandTile_0: -8010440586615673751
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

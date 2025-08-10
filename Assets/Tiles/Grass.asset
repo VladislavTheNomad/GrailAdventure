@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adfcd38dadf5d1642bef6760f470a6c3, type: 3}
   m_Name: Grass
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 7932798033344189819, guid: 4f116a949b9a2ec469fd85d20b547b7b, type: 3}
+  m_Sprite: {fileID: -3023766824798548878, guid: 60765891862df5a43b7d910af57ef8fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -35,3 +35,4 @@ MonoBehaviour:
   m_Flags: 1
   m_ColliderType: 0
   isWalkable: 1
+  moveCost: 1

@@ -3,12 +3,14 @@ using UnityEngine.Tilemaps;
 
 namespace Grail
 {
-    public class TileGridConstructor : MonoBehaviour
+    public class TileGridConstructor : MonoBehaviour, IInitializable
     {
         [SerializeField] private Tilemap tilemap;         // Ссылка на Tilemap (присваивается в инспекторе)
         public TileData[,] tileGrid { get; private set; }   // Двумерный массив TileData
 
-        public void Initialize()
+        public int sortingIndex => 1;
+
+        public void Initialise()
         {
             tileGrid = new TileData[32, 32];
 
@@ -21,6 +23,7 @@ namespace Grail
             }
 
             GoldPileFilling();
+            SmithFilling();
         }
 
         private void GoldPileFilling()
@@ -36,7 +39,19 @@ namespace Grail
             }
         }
 
-        // Метод для получения TileData по позиции
+        private void SmithFilling()
+        {
+            Smith[] smiths = Object.FindObjectsByType<Smith>(FindObjectsSortMode.None);
+            foreach (Smith smith in smiths)
+            {
+                Vector3Int tilePosition = tilemap.WorldToCell(smith.transform.position);
+                if (tilePosition.x >= 0 && tilePosition.x < 32 && tilePosition.y >= 0 && tilePosition.y < 32)
+                {
+                    tileGrid[tilePosition.x, tilePosition.y].AddSmith();
+                }
+            }
+        }
+
         public TileData GetTileData(Vector3Int position)
         {
             if (position.x >= 0 && position.x < tilemap.size.x && position.y >= 0 && position.y < tilemap.size.y)

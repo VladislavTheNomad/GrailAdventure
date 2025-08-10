@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adfcd38dadf5d1642bef6760f470a6c3, type: 3}
   m_Name: Sand
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 4360390788417139489, guid: 8d075142fe376fa4bb0267a449c2fe84, type: 3}
+  m_Sprite: {fileID: -8010440586615673751, guid: e5431a89053ed8147b3efad9c70cdc87, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

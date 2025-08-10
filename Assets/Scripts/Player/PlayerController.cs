@@ -5,33 +5,27 @@ using System.Collections;
 
 namespace Grail
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IInitializable
     {
+        //connections
         [SerializeField] private Tilemap worldTilemap;
-        [SerializeField] private TurnsManager fromTurnsManager;
-        [SerializeField] private TileDataManager fromTileDataManager;
-        private Vector3Int playerCellPosition = new Vector3Int(0, 0, 0);
+        [SerializeField] private TurnsManager turnsManager;
+        [SerializeField] private TileDataManager tileDataManager;
+        // settings
+        [SerializeField] private float pauseTimeBetweenTurns = 0.2f;
 
-        //input sys
-
+        //own
+        private Vector3Int playerCellPosition;
         private PlayerInputSystem inputActions;
-        private float pauseTimeBetweenTurns = 0.2f;
         private bool isPaused;
+        public int sortingIndex => 2;
 
-        public void Initialize()
+        public void Initialise()
         {
             inputActions = new PlayerInputSystem();
-            inputActions.Player.Move.performed += OnMovePerformed;
-        }
-
-        private void OnEnable()
-        {
             inputActions.Enable();
-        }
-
-        private void OnDisable()
-        {
-            inputActions.Disable();
+            inputActions.Player.Move.performed += OnMovePerformed;
+            playerCellPosition = new Vector3Int(0, 0, 0);
         }
 
         private void OnMovePerformed(InputAction.CallbackContext context)
@@ -41,7 +35,7 @@ namespace Grail
                 return;
             }
             isPaused = true;
-            StartCoroutine(LittlePauseBetweenTurns());
+            StartCoroutine(WaitBetweenTurns());
             Vector2 directionRaw = context.ReadValue<Vector2>();
             Vector2Int direction;
 
@@ -64,16 +58,14 @@ namespace Grail
             if (TileCheckManager.CheckTileIsWalkable(tile))
             {
                 playerCellPosition = targetCellPosition;
-                Debug.Log(playerCellPosition.x);
-                Debug.Log(playerCellPosition.y);
                 Vector3 worldPosition = worldTilemap.GetCellCenterWorld(playerCellPosition);
                 transform.position = worldPosition;
-                fromTurnsManager.AddTurns(TileCheckManager.CheckMoveCost(tile));
-                fromTileDataManager.CheckObjectsOnTile(playerCellPosition);
+                turnsManager.AddTurns(TileCheckManager.CheckMoveCost(tile));
+                tileDataManager.CheckObjectsOnTile(playerCellPosition);
             }
         }
 
-        private IEnumerator LittlePauseBetweenTurns()
+        private IEnumerator WaitBetweenTurns()
         {
             yield return new WaitForSeconds(pauseTimeBetweenTurns);
             isPaused = false;

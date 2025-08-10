@@ -1,0 +1,37 @@
+using System;
+using UnityEngine;
+
+namespace Grail
+{
+    public class PlayerStats : MonoBehaviour, IInitializable
+    {
+        public int hp { get; private set; }
+        public int mana { get; private set; }
+
+        public int might { get; private set; }
+        public int magic { get; private set; }
+
+        public float physicalDefence { get; private set; }
+        public float magicalDefence { get; private set; }
+
+        public int sortingIndex => 3;
+
+        public event Action OnStatsChanged;
+
+        public void Initialise()
+        {
+            hp = 100;
+            mana = 5;
+            might = 5;
+            magic = 5;
+            physicalDefence = 0f;
+            magicalDefence = 0f;
+        }
+
+        public void ModifyMight(int num)
+        {
+            might += num;
+            OnStatsChanged?.Invoke();
+        }
+    }
+}

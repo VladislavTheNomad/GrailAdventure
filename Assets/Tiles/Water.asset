@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adfcd38dadf5d1642bef6760f470a6c3, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 8509550459451208454, guid: 9237ab94fba98fe4b945cec457566596, type: 3}
+  m_Sprite: {fileID: -2919772060809379065, guid: 4e17fd0d11251e949ab7f6ed2734b4e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

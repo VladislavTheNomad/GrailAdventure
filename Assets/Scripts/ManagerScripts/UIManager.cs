@@ -3,34 +3,63 @@ using UnityEngine;
 
 namespace Grail
 {
-    public class UIManager : MonoBehaviour
+    public class UIManager : MonoBehaviour, IInitializable
     {
-        // text UI
+        // resources UI
         [SerializeField] private TextMeshProUGUI turnsText;
         [SerializeField] private TextMeshProUGUI goldText;
+
+        // player stats UI
+
+        [SerializeField] private TextMeshProUGUI hpText;
+        [SerializeField] private TextMeshProUGUI manaText;
+        [SerializeField] private TextMeshProUGUI mightText;
+        [SerializeField] private TextMeshProUGUI magicText;
+        [SerializeField] private TextMeshProUGUI physDefText;
+        [SerializeField] private TextMeshProUGUI magicDefText;
 
         // connections
         [SerializeField] private TurnsManager turnsManager;
         [SerializeField] private PlayerInventory playerInventory;
+        [SerializeField] private PlayerStats playerStats;
 
-        public void Initialize()
+        public int sortingIndex => 99;
+
+        public void Initialise()
         {
-            turnsManager.onTurnsChanged += TurnsUpdate;
-            turnsManager.onGameOver += GameOverUI;
-            playerInventory.onCurrentGoldChanged += GoldUpdate;
-            TurnsUpdate();
-            GoldUpdate();
-        }
+            turnsManager.OnTurnsChanged += TurnsUpdateUI;
+            turnsManager.OnGameOver += GameOverUI;
+            playerInventory.OnCurrentGoldChanged += GoldUpdateUI;
+            playerStats.OnStatsChanged += StatsUpdateUI;
 
-        private void TurnsUpdate()
+            TurnsUpdateUI();
+            GoldUpdateUI();
+
+            StatsUpdateUI();
+        }
+        // resources update
+        private void TurnsUpdateUI()
         {
             turnsText.text = $"Ходов: {turnsManager.GetCurrentTurns()} / {turnsManager.GetMaxTurns()}";
         }
 
-        private void GoldUpdate()
+        private void GoldUpdateUI()
         {
             goldText.text = $"Золото: {playerInventory.GetCurrentGold()}";
         }
+        // player's stats update
+
+        private void StatsUpdateUI()
+        {
+            hpText.text = $"HP: {playerStats.hp}";
+            manaText.text = $"Mana: {playerStats.mana}";
+            mightText.text = $"Might: {playerStats.might}";
+            magicText.text = $"Magic: {playerStats.magic}";
+            physDefText.text = $"Phys. Def.: {(int)(playerStats.physicalDefence * 100)}%";
+            magicDefText.text = $"Magic Def.: {(int)(playerStats.magicalDefence * 100)}%";
+        }
+
+        //other methods
 
         private void GameOverUI()
         {
