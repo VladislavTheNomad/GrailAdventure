@@ -21,7 +21,7 @@ namespace Grail
         // connections
         [SerializeField] private TurnsManager turnsManager;
         [SerializeField] private PlayerInventory playerInventory;
-        [SerializeField] private PlayerStats playerStats;
+        //[SerializeField] private PlayerStats playerStats;
 
         public int sortingIndex => 99;
 
@@ -30,7 +30,7 @@ namespace Grail
             turnsManager.OnTurnsChanged += TurnsUpdateUI;
             turnsManager.OnGameOver += GameOverUI;
             playerInventory.OnCurrentGoldChanged += GoldUpdateUI;
-            playerStats.OnStatsChanged += StatsUpdateUI;
+            PlayerStats.instance.OnStatsChanged += StatsUpdateUI;
 
             TurnsUpdateUI();
             GoldUpdateUI();
@@ -51,12 +51,12 @@ namespace Grail
 
         private void StatsUpdateUI()
         {
-            hpText.text = $"HP: {playerStats.hp}";
-            manaText.text = $"Mana: {playerStats.mana}";
-            mightText.text = $"Might: {playerStats.might}";
-            magicText.text = $"Magic: {playerStats.magic}";
-            physDefText.text = $"Phys. Def.: {(int)(playerStats.physicalDefence * 100)}%";
-            magicDefText.text = $"Magic Def.: {(int)(playerStats.magicalDefence * 100)}%";
+            hpText.text = $"HP: {PlayerStats.instance.hp}";
+            manaText.text = $"Mana: {PlayerStats.instance.mana}";
+            mightText.text = $"Might: {PlayerStats.instance.might}";
+            magicText.text = $"Magic: {PlayerStats.instance.magic}";
+            physDefText.text = $"Phys. Def.: {(int)(PlayerStats.instance.physicalDefence * 100)}%";
+            magicDefText.text = $"Magic Def.: {(int)(PlayerStats.instance.magicalDefence * 100)}%";
         }
 
         //other methods

@@ -18,6 +18,8 @@ namespace Grail
 
         public event Action OnStatsChanged;
 
+        public static PlayerStats instance { get; private set; }
+
         public void Initialise()
         {
             hp = 100;
@@ -26,11 +28,20 @@ namespace Grail
             magic = 5;
             physicalDefence = 0f;
             magicalDefence = 0f;
+
+            if (instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         public void ModifyMight(int num)
         {
-            might += num;
+            instance.might += num;
             OnStatsChanged?.Invoke();
         }
     }

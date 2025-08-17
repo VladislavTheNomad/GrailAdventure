@@ -9306,7 +9306,6 @@ MonoBehaviour:
   magicDefText: {fileID: 1597898566}
   turnsManager: {fileID: 1899902841}
   playerInventory: {fileID: 1925923365}
-  playerStats: {fileID: 1925923370}
 --- !u!1 &1128014691
 GameObject:
   m_ObjectHideFlags: 0
@@ -9494,7 +9493,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileGridConstructor: {fileID: 2140767376}
   objectProperties: {fileID: 11400000, guid: ed780443ae0786a418994b59bd31f199, type: 2}
-  playerStats: {fileID: 1925923370}
 --- !u!1 &1200458169
 GameObject:
   m_ObjectHideFlags: 0
@@ -10114,17 +10112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f5f0c8ab83da8409c3b95b1e760294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1925923370 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -7591844055140072535, guid: 5b4d5aa26d6fd724e991f680e541290c, type: 3}
-  m_PrefabInstance: {fileID: 4823904787706424043}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6e24e0558318554ea550be01ef80564, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1934308753
 GameObject:
   m_ObjectHideFlags: 0
@@ -10569,11 +10556,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 79485979072743942, guid: 82cf6cd7cbe47ad4b97cc0797cf7ba82, type: 3}
       propertyPath: m_Name
-      value: Smith_anim
+      value: Smith
       objectReference: {fileID: 0}
     - target: {fileID: 8838042183583220565, guid: 82cf6cd7cbe47ad4b97cc0797cf7ba82, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.61
+      value: 1.716
       objectReference: {fileID: 0}
     - target: {fileID: 8838042183583220565, guid: 82cf6cd7cbe47ad4b97cc0797cf7ba82, type: 3}
       propertyPath: m_LocalPosition.y
